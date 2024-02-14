@@ -3,11 +3,11 @@ package com.test.coursemanagementspring.core.person.entities;
 import java.util.List;
 
 public class Teacher extends Person {
-    Teacher(String name) {
+    public Teacher(String name) {
         super(name);
     }
 
-    Teacher(int id, String name) {
+    public Teacher(int id, String name) {
         super(id, name);
     }
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class PersonService implements PersonServiceAdapter {
     private final PersonDaoAdapter personDao;
 
-    PersonService(PersonDaoAdapter personDao) {
+    public PersonService(PersonDaoAdapter personDao) {
         this.personDao = personDao;
     }
 

@@ -8,11 +8,11 @@ public abstract class Person implements Serializable {
 
     private String name;
 
-    Person(String name) {
+    protected Person(String name) {
         this.name = name;
     }
 
-    Person(int id, String name) {
+    protected Person(int id, String name) {
         this.id = id;
         this.name = name;
     }

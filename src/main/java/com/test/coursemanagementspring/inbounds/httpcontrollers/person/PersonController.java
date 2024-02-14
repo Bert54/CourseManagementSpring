@@ -17,7 +17,12 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public Person getPerson(@PathVariable("id") int id) {
+    public Person getPersonById(@PathVariable("id") int id) {
         return this.personService.getPerson(id);
+    }
+
+    @GetMapping("/name/{name}")
+    public Person getPersonByName(@PathVariable("name") String name) {
+        return this.personService.getPerson(name);
     }
 }
