@@ -1,5 +1,6 @@
 package com.test.coursemanagementspring.inbounds.httpcontrollers.person;
 
+import com.test.coursemanagementspring.core.errors.ValidationException;
 import com.test.coursemanagementspring.core.person.adapters.PersonServiceAdapter;
 import com.test.coursemanagementspring.core.person.entities.Person;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,14 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public Person getPersonById(@PathVariable("id") int id) {
+    public Person getPersonById(@PathVariable("id") String idStr) throws ValidationException {
+        int id;
+        try {
+            id = Integer.parseInt(idStr);
+        } catch (NumberFormatException e) {
+            throw new ValidationException(String.format("'%s' is not a valid number", idStr));
+        }
+
         return this.personService.getPerson(id);
     }
 
