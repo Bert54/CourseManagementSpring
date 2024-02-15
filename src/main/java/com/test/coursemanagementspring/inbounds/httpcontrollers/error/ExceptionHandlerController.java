@@ -17,7 +17,6 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @ControllerAdvice
 public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
-
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<Object> handleBadRequestError(Exception e, WebRequest request) {
         return handleGeneric(e, request, 400, ErrorObject.BAD_REQUEST, HttpStatus.BAD_REQUEST);
@@ -25,7 +24,6 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<Object> handleNotFoundError(Exception e, WebRequest request) {
-        System.out.println("gottam");
         return handleGeneric(e, request, 404, ErrorObject.NOT_FOUND, HttpStatus.NOT_FOUND);
     }
 
@@ -42,7 +40,6 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     // handle all unhandled errors here.
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleUnhandledError(Exception e, WebRequest request) {
-        System.out.println("pootis");
         return handleGeneric(e, request, 500, ErrorObject.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
     }
     // any new errors to handle should be put above the method above
