@@ -1,8 +1,7 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.error;
+package com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler;
 
-import com.test.coursemanagementspring.core.errors.NotFoundException;
-import com.test.coursemanagementspring.core.errors.ValidationException;
-import com.test.coursemanagementspring.inbounds.httpcontrollers.error.object.ErrorObject;
+import com.test.coursemanagementspring.core.errors.*;
+import com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler.object.ErrorObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -17,7 +16,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @ControllerAdvice
 public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(ValidationException.class)
+    @ExceptionHandler({ValidationException.class, AlreadyExistsException.class})
     public ResponseEntity<Object> handleBadRequestError(Exception e, WebRequest request) {
         return handleGeneric(e, request, 400, ErrorObject.BAD_REQUEST, HttpStatus.BAD_REQUEST);
     }

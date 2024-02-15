@@ -1,8 +1,8 @@
-package com.test.coursemanagementspring.core.person;
+package com.test.coursemanagementspring.core.services.person;
 
-import com.test.coursemanagementspring.core.person.adapters.PersonDaoAdapter;
-import com.test.coursemanagementspring.core.person.adapters.PersonServiceAdapter;
-import com.test.coursemanagementspring.core.person.entities.Person;
+import com.test.coursemanagementspring.core.services.person.adapters.PersonDaoAdapter;
+import com.test.coursemanagementspring.core.services.person.adapters.PersonServiceAdapter;
+import com.test.coursemanagementspring.core.services.person.entities.Person;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,5 +19,9 @@ public class PersonService implements PersonServiceAdapter {
 
     public Person getPerson(String name) {
         return this.personDao.find(name);
+    }
+
+    public Person addPerson(Person person) {
+        return this.personDao.save(person);
     }
 }

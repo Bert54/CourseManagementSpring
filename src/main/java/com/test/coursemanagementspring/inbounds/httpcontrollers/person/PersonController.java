@@ -1,12 +1,10 @@
 package com.test.coursemanagementspring.inbounds.httpcontrollers.person;
 
 import com.test.coursemanagementspring.core.errors.ValidationException;
-import com.test.coursemanagementspring.core.person.adapters.PersonServiceAdapter;
-import com.test.coursemanagementspring.core.person.entities.Person;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.test.coursemanagementspring.core.services.person.adapters.PersonServiceAdapter;
+import com.test.coursemanagementspring.core.services.person.entities.Person;
+import com.test.coursemanagementspring.inbounds.httpcontrollers.dto.person.AddPersonDto;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/person")
@@ -32,5 +30,12 @@ public class PersonController {
     @GetMapping("/name/{name}")
     public Person getPersonByName(@PathVariable("name") String name) {
         return this.personService.getPerson(name);
+    }
+
+    @PostMapping
+    public Person addPerson(@RequestBody AddPersonDto person) {
+        person.format();;
+        person.validate();
+        return this.personService.addPerson(person.toCorePerson());
     }
 }

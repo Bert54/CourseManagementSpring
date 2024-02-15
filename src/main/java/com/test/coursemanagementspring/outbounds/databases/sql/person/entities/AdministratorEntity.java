@@ -1,7 +1,7 @@
 package com.test.coursemanagementspring.outbounds.databases.sql.person.entities;
 
-import com.test.coursemanagementspring.core.person.entities.Administrator;
-import com.test.coursemanagementspring.core.person.entities.Person;
+import com.test.coursemanagementspring.core.services.person.entities.Administrator;
+import com.test.coursemanagementspring.core.services.person.entities.Person;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -10,6 +10,10 @@ import jakarta.persistence.Entity;
 public class AdministratorEntity extends PersonEntity {
     public AdministratorEntity() {
         super();
+    }
+
+    public AdministratorEntity(String name) {
+        super(name);
     }
 
     public AdministratorEntity(int id, String name) {

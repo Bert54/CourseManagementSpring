@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.core.helloworld;
+package com.test.coursemanagementspring.core.services.helloworld;
 
 public interface HelloWorldServiceBase {
     String getHello();

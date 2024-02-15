@@ -1,9 +1,12 @@
-package com.test.coursemanagementspring.core.person.entities;
+package com.test.coursemanagementspring.core.services.person.entities;
 
 import java.io.Serializable;
 import java.util.List;
 
 public abstract class Person implements Serializable {
+    public static final int NAME_MIN_LENGTH = 3;
+    public static final int NAME_MAX_LENGTH = 100;
+
     private int id;
 
     private String name;
@@ -32,6 +35,8 @@ public abstract class Person implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    abstract public PersonType getType();
 
     abstract public List<String> getPermissions();
 }

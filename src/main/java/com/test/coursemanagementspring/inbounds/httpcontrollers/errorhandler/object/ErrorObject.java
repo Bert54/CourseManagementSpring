@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.error.object;
+package com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler.object;
 
 import java.io.Serializable;
 

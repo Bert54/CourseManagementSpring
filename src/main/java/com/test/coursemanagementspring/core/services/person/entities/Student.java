@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.core.person.entities;
+package com.test.coursemanagementspring.core.services.person.entities;
 
 import java.util.List;
 
@@ -9,6 +9,10 @@ public class Student extends Person{
 
     public Student(int id, String name) {
         super(id, name);
+    }
+
+    public PersonType getType() {
+        return PersonType.Student;
     }
 
     @Override

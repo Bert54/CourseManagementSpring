@@ -10,4 +10,7 @@ public interface PersonRepository extends CrudRepository<PersonEntity, Integer> 
 
     @Query("SELECT person FROM PersonEntity person WHERE person.name = :name")
     PersonEntity find(String name);
+
+    @Override
+    <S extends PersonEntity> S save(S person);
 }

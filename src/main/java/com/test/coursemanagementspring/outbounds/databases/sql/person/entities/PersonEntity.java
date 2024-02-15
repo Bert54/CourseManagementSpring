@@ -1,10 +1,10 @@
 package com.test.coursemanagementspring.outbounds.databases.sql.person.entities;
 
-import com.test.coursemanagementspring.core.person.entities.Person;
+import com.test.coursemanagementspring.core.services.person.entities.Person;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
-import java.util.List;
+import static com.test.coursemanagementspring.core.services.person.entities.Person.*;
 
 @Entity
 @Table(name = "Person")
@@ -16,13 +16,16 @@ public abstract class PersonEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
 
-    @Size(min = 1, max = 100)
+    @Size(min = NAME_MIN_LENGTH, max = NAME_MAX_LENGTH)
     @Column(unique = true)
     protected String name;
 
-
     public PersonEntity() {
 
+    }
+
+    protected PersonEntity(String name) {
+        this.name = name;
     }
 
     protected PersonEntity(int id, String name) {

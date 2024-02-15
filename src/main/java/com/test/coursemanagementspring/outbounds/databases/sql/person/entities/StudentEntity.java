@@ -1,7 +1,7 @@
 package com.test.coursemanagementspring.outbounds.databases.sql.person.entities;
 
-import com.test.coursemanagementspring.core.person.entities.Person;
-import com.test.coursemanagementspring.core.person.entities.Student;
+import com.test.coursemanagementspring.core.services.person.entities.Person;
+import com.test.coursemanagementspring.core.services.person.entities.Student;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -10,6 +10,10 @@ import jakarta.persistence.Entity;
 public class StudentEntity extends PersonEntity {
     public StudentEntity() {
         super();
+    }
+
+    public StudentEntity(String name) {
+        super(name);
     }
 
     public StudentEntity(int id, String name) {
