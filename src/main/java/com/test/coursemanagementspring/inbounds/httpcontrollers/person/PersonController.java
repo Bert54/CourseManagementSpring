@@ -1,6 +1,5 @@
 package com.test.coursemanagementspring.inbounds.httpcontrollers.person;
 
-import com.test.coursemanagementspring.core.errors.NotFoundException;
 import com.test.coursemanagementspring.core.errors.ValidationException;
 import com.test.coursemanagementspring.core.person.adapters.PersonServiceAdapter;
 import com.test.coursemanagementspring.core.person.entities.Person;
@@ -19,7 +18,7 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public Person getPersonById(@PathVariable("id") String idStr) throws ValidationException, NotFoundException {
+    public Person getPersonById(@PathVariable("id") String idStr) {
         int id;
         try {
             id = Integer.parseInt(idStr);
@@ -31,7 +30,7 @@ public class PersonController {
     }
 
     @GetMapping("/name/{name}")
-    public Person getPersonByName(@PathVariable("name") String name) throws NotFoundException {
+    public Person getPersonByName(@PathVariable("name") String name) {
         return this.personService.getPerson(name);
     }
 }

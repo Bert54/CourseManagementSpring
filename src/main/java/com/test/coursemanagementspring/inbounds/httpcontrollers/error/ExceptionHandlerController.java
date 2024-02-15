@@ -27,6 +27,8 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
         return handleGeneric(e, request, 404, ErrorObject.NOT_FOUND, HttpStatus.NOT_FOUND);
     }
 
+    // the two methods below allow us to customize the default "route/resource not found" errors managed by Spring
+
     @Override
     public ResponseEntity<Object> handleNoHandlerFoundException(@Nullable NoHandlerFoundException ex, @Nullable HttpHeaders headers, @Nullable HttpStatusCode status, @Nullable WebRequest request) {
         return handleNotFoundError(ex, request);
