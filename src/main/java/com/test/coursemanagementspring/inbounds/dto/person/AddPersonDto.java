@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.dto.person;
+package com.test.coursemanagementspring.inbounds.dto.person;
 
 import com.test.coursemanagementspring.core.errors.UnknownEntityException;
 import com.test.coursemanagementspring.core.errors.ValidationException;

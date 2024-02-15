@@ -3,7 +3,7 @@ package com.test.coursemanagementspring.inbounds.httpcontrollers.person;
 import com.test.coursemanagementspring.core.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonServiceAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
-import com.test.coursemanagementspring.inbounds.httpcontrollers.dto.person.AddPersonDto;
+import com.test.coursemanagementspring.inbounds.dto.person.AddPersonDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
