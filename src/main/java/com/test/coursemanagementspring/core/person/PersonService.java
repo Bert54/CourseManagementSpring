@@ -1,5 +1,6 @@
 package com.test.coursemanagementspring.core.person;
 
+import com.test.coursemanagementspring.core.errors.NotFoundException;
 import com.test.coursemanagementspring.core.person.adapters.PersonDaoAdapter;
 import com.test.coursemanagementspring.core.person.adapters.PersonServiceAdapter;
 import com.test.coursemanagementspring.core.person.entities.Person;
@@ -13,11 +14,11 @@ public class PersonService implements PersonServiceAdapter {
         this.personDao = personDao;
     }
 
-    public Person getPerson(int id) {
+    public Person getPerson(int id) throws NotFoundException {
         return this.personDao.find(id);
     }
 
-    public Person getPerson(String name) {
+    public Person getPerson(String name) throws NotFoundException {
         return this.personDao.find(name);
     }
 }
