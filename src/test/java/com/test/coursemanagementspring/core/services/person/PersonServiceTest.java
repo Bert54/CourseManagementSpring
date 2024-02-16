@@ -5,16 +5,13 @@ import com.test.coursemanagementspring.core.services.person.entities.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
 public class PersonServiceTest {
     private PersonService personService;
     private Dependencies dependencies;
@@ -30,7 +27,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Test PersonService getPerson(int) - OK")
+    @DisplayName("Test getPerson(int) - OK")
     public void TestGetPersonIntOK() {
         Person person = Mockito.mock(Person.class);
         when(this.dependencies.personDao.find(anyInt())).thenReturn(person);
@@ -40,7 +37,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Test PersonService getPerson(int) - Dao throws runtime exception")
+    @DisplayName("Test getPerson(int) - Dao throws runtime exception")
     public void TestGetPersonIntDaoRuntimeException() {
         RuntimeException expected = new RuntimeException("I am an exception");
         when(this.dependencies.personDao.find(anyInt())).thenThrow(expected);
@@ -50,7 +47,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Test PersonService getPerson(String) - OK")
+    @DisplayName("Test getPerson(String) - OK")
     public void TestGetPersonStringOK() {
         Person person = Mockito.mock(Person.class);
         when(this.dependencies.personDao.find(anyString())).thenReturn(person);
@@ -60,7 +57,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Test PersonService getPerson(String) - Dao throws runtime exception")
+    @DisplayName("Test getPerson(String) - Dao throws runtime exception")
     public void TestGetPersonStringDaoRuntimeException() {
         RuntimeException expected = new RuntimeException("I am an exception");
         when(this.dependencies.personDao.find(anyString())).thenThrow(expected);
@@ -70,7 +67,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Test PersonService addPerson() - OK")
+    @DisplayName("Test addPerson() - OK")
     public void TestAddPersonOK() {
         Person person = Mockito.mock(Person.class);
         person.setId(6);
@@ -82,7 +79,7 @@ public class PersonServiceTest {
     }
 
     @Test
-    @DisplayName("Test PersonService addPerson() - Dao throws runtime exception")
+    @DisplayName("Test addPerson() - Dao throws runtime exception")
     public void TestAddPersonDaoRuntimeException() {
         RuntimeException expected = new RuntimeException("I am an exception");
         when(this.dependencies.personDao.save(any(Person.class))).thenThrow(expected);
