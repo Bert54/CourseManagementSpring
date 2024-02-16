@@ -59,4 +59,17 @@ public class AddPersonDto {
             default -> throw new UnknownEntityException(String.format("Unknown person role '%s'", this.role));
         };
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof AddPersonDto dto)) {
+            return false;
+        }
+
+        return this.name.equals(dto.name) && this.role.equals(dto.role);
+    }
 }
