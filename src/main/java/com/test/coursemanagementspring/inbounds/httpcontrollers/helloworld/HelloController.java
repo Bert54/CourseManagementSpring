@@ -1,6 +1,6 @@
 package com.test.coursemanagementspring.inbounds.httpcontrollers.helloworld;
 
-import com.test.coursemanagementspring.core.services.helloworld.HelloWorldServiceBase;
+import com.test.coursemanagementspring.core.services.helloworld.adapters.HelloWorldServiceBase;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
