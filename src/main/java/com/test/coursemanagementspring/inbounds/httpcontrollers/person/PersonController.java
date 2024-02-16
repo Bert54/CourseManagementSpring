@@ -4,10 +4,15 @@ import com.test.coursemanagementspring.core.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonServiceAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
 import com.test.coursemanagementspring.inbounds.dto.person.AddPersonDto;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
+
+import static com.test.coursemanagementspring.inbounds.httpcontrollers.openapi.Tags.HELLO_TAG;
+import static com.test.coursemanagementspring.inbounds.httpcontrollers.openapi.Tags.PERSON_TAG;
 
 @RestController
 @RequestMapping("/api/v1/person")
+@Tag(name = PERSON_TAG, description = "Handle people")
 public class PersonController {
     private final PersonServiceAdapter personService;
 

@@ -3,20 +3,38 @@ package com.test.coursemanagementspring.inbounds.dto.person;
 import com.test.coursemanagementspring.core.errors.UnknownEntityException;
 import com.test.coursemanagementspring.core.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.person.entities.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static com.test.coursemanagementspring.core.services.person.entities.Person.*;
 
+@Schema(description = "Structure used to create a new person")
 public class AddPersonDto {
     public static final String ADMINISTRATOR_ROLE = "administrator";
     public static final String TEACHER_ROLE = "teacher";
     public static final String STUDENT_ROLE = "student";
 
+    @NotNull
+    @Size(min = NAME_MIN_LENGTH, max = NAME_MAX_LENGTH)
+    @Schema(description = "Name of the person")
     private String name;
 
+    @NotNull
+    @Schema(description = "Role of the person", allowableValues = {ADMINISTRATOR_ROLE, TEACHER_ROLE, STUDENT_ROLE})
     private String role;
+
+    public String getName() {
+        return this.name;
+    }
+
+    @SuppressWarnings("unused") // Used by the OpenAPI documentation
+    public String getRole() {
+        return this.role;
+    }
 
     public AddPersonDto(String name, String role) {
         this.name = name;
