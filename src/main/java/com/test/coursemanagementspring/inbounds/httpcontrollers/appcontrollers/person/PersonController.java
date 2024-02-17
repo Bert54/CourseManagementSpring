@@ -7,6 +7,8 @@ import com.test.coursemanagementspring.inbounds.dto.person.AddPersonDto;
 import com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler.object.ErrorObject;
 import com.test.coursemanagementspring.inbounds.httpcontrollers.filters.checkpermission.CheckPermission;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -103,6 +105,12 @@ public class PersonController {
             summary = "Add a person",
             operationId = "addPerson"
     )
+    @Parameter(
+            description = "ID of the person performing this operation",
+            required = true,
+            name = "X-PersonID",
+            in = ParameterIn.HEADER
+    )
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "201",
@@ -111,6 +119,24 @@ public class PersonController {
             @ApiResponse(
                     responseCode = "400",
                     description = "The person to add has an invalid name, an unknown role or already exists",
+                    content = @Content(
+                            schema = @Schema(
+                                    implementation = ErrorObject.class
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "No authorization header were provided or authorization header is empty",
+                    content = @Content(
+                            schema = @Schema(
+                                    implementation = ErrorObject.class
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "The person does not have the required permission",
                     content = @Content(
                             schema = @Schema(
                                     implementation = ErrorObject.class

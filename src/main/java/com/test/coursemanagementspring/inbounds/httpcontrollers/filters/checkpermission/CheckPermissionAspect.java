@@ -48,7 +48,7 @@ public class CheckPermissionAspect {
         try {
             id = Integer.parseInt(idStr);
         } catch (NumberFormatException e) {
-            throw new ValidationException(String.format("Authentication: '%s' header content is not a valid number", idStr));
+            throw new ValidationException(String.format("Authentication: '%s' is not a valid number", idStr));
         }
 
         Person person;
