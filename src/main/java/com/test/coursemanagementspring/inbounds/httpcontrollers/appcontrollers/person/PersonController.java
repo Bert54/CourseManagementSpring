@@ -1,10 +1,11 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.person;
+package com.test.coursemanagementspring.inbounds.httpcontrollers.appcontrollers.person;
 
 import com.test.coursemanagementspring.core.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonServiceAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
 import com.test.coursemanagementspring.inbounds.dto.person.AddPersonDto;
 import com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler.object.ErrorObject;
+import com.test.coursemanagementspring.inbounds.httpcontrollers.filters.checkpermission.CheckPermission;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import static com.test.coursemanagementspring.core.permissions.Permissions.PERSON_CREATE;
 import static com.test.coursemanagementspring.inbounds.httpcontrollers.openapi.Tags.PERSON_TAG;
 
 @RestController
@@ -94,6 +96,7 @@ public class PersonController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @CheckPermission(permission = PERSON_CREATE)
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(
             description = "Add a new person. The person is provided in the request body.",

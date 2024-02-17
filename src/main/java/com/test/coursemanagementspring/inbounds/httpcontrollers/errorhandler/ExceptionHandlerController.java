@@ -27,6 +27,16 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
         return handleGeneric(e, request, 404, ErrorObject.NOT_FOUND, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<Object> handleForbiddenError(Exception e, WebRequest request) {
+        return handleGeneric(e, request, 403, ErrorObject.FORBIDDEN, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<Object> handleUnauthorizedError(Exception e, WebRequest request) {
+        return handleGeneric(e, request, 401, ErrorObject.UNAUTHORIZED, HttpStatus.UNAUTHORIZED);
+    }
+
     // the two methods below allow us to customize the default "route/resource not found" errors managed by Spring
 
     @Override

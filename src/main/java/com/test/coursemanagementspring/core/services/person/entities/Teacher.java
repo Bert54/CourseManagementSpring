@@ -17,6 +17,6 @@ public class Teacher extends Person {
 
     @Override
     public List<String> getPermissions() {
-        return List.of("teacher_temp");
+        return List.of();
     }
 }

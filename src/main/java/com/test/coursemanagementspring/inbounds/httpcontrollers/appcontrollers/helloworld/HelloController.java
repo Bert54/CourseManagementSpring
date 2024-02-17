@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.helloworld;
+package com.test.coursemanagementspring.inbounds.httpcontrollers.appcontrollers.helloworld;
 
 import com.test.coursemanagementspring.core.services.helloworld.adapters.HelloWorldServiceBase;
 import io.swagger.v3.oas.annotations.Operation;

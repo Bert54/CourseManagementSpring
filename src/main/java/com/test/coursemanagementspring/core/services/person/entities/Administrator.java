@@ -2,6 +2,8 @@ package com.test.coursemanagementspring.core.services.person.entities;
 
 import java.util.List;
 
+import static com.test.coursemanagementspring.core.permissions.Permissions.PERSON_CREATE;
+
 public class Administrator extends Person {
     public Administrator(String name) {
         super(name);
@@ -17,6 +19,6 @@ public class Administrator extends Person {
 
     @Override
     public List<String> getPermissions() {
-        return List.of("administrator_temp");
+        return List.of(PERSON_CREATE);
     }
 }
