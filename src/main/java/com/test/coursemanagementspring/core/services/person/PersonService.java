@@ -1,5 +1,6 @@
 package com.test.coursemanagementspring.core.services.person;
 
+import com.test.coursemanagementspring.core.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonDaoAdapter;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonServiceAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
@@ -14,6 +15,10 @@ public class PersonService implements PersonServiceAdapter {
     }
 
     public Person getPerson(int id) {
+        if (id < 0) {
+            throw new ValidationException("ID must be a positive number");
+        }
+
         return this.personDao.find(id);
     }
 

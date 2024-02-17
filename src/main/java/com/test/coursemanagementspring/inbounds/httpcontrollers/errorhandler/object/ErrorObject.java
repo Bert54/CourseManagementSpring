@@ -1,7 +1,10 @@
 package com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler.object;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.io.Serializable;
 
+@Schema(description = "Error structure returned by the application")
 public class ErrorObject implements Serializable {
     public static final String BAD_REQUEST = "BAD_REQUEST";
     public static final String NOT_FOUND = "NOT_FOUND";

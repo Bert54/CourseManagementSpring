@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,19 +25,16 @@ public class HelloController {
         this.helloWorldService = helloWorldService;
     }
 
-    @GetMapping
+    @GetMapping(produces = MediaType.TEXT_PLAIN_VALUE)
     @Operation(
-            description = "Returns a simple 'Hello World!' in plain text. No parameters, body or headers required",
-            summary = "Returns 'Hello World!' in plain text",
+            description = "Return a simple 'Hello World!' in plain text. No parameters, body or headers required",
+            summary = "Return 'Hello World!' in plain text",
             operationId = "getHello"
     )
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "'Hello World!",
-                    content = @Content(
-                            mediaType = TEXT_PLAIN_VALUE
-                    )
+                    description = "'Hello World!"
             )
     })
     public String getHello() {

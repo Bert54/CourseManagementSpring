@@ -1,5 +1,6 @@
 package com.test.coursemanagementspring.core.services.person;
 
+import com.test.coursemanagementspring.core.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonDaoAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,6 +35,13 @@ public class PersonServiceTest {
 
         assertSame(person, this.personService.getPerson(anyInt()));
         verify(this.dependencies.personDao, times(1)).find(anyInt());
+    }
+
+    @Test
+    @DisplayName("Test getPerson(int) - Negative ID error")
+    public void TestGetPersonIntNegativeIDError() {
+        assertThrows(ValidationException.class, () -> this.personService.getPerson(-1));
+        verify(this.dependencies.personDao, times(0)).find(anyInt());
     }
 
     @Test
