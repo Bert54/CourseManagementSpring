@@ -4,6 +4,7 @@ import com.test.coursemanagementspring.core.errors.AlreadyExistsException;
 import com.test.coursemanagementspring.core.errors.NotFoundException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonDaoAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
+import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.AdministratorEntity;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.PersonEntity;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.StudentEntity;
@@ -15,15 +16,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class PersonDao implements PersonDaoAdapter {
     private final PersonRepository personRepository;
+    private final LoggerAdapter logger;
 
-    public PersonDao(PersonRepository personRepository) {
+    public PersonDao(PersonRepository personRepository, LoggerAdapter logger) {
         this.personRepository = personRepository;
+        this.logger = logger;
     }
 
     public Person find(int id) throws NotFoundException {
         PersonEntity person = this.personRepository.find(id);
         if (person == null) {
-            throw new NotFoundException(String.format("Person with id '%d' was not found", id));
+            String message = String.format("Person with id '%d' was not found", id);
+            this.logger.info(message);
+            throw new NotFoundException(message);
         }
 
         return person.toCorePerson();

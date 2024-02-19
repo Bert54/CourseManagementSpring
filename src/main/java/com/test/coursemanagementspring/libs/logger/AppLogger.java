@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AppLogger implements LoggerAdapter {
-
     private final Logger logger;
 
     public AppLogger() {
@@ -20,7 +19,13 @@ public class AppLogger implements LoggerAdapter {
     }
 
     @Override
-    public void http(String message, String route, String method) {
-        this.logger.info(String.format("http %s %s - %s", method, route, message));
+    public void http(String route, String method, int status, long responseTime) {
+        String responseTimeFormat;
+        if (responseTime > 1000) {
+            responseTimeFormat = String.format("%d s", responseTime / 1000);
+        } else {
+            responseTimeFormat = String.format("%d ms", responseTime);
+        }
+        this.logger.info(String.format("http %s %s - Status %d - %s", method, route, status, responseTimeFormat));
     }
 }
