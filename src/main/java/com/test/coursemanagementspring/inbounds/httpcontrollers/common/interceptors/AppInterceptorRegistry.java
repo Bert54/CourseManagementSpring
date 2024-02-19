@@ -1,6 +1,6 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.interceptors;
+package com.test.coursemanagementspring.inbounds.httpcontrollers.common.interceptors;
 
-import com.test.coursemanagementspring.inbounds.httpcontrollers.interceptors.logger.LoggerInterceptor;
+import com.test.coursemanagementspring.inbounds.httpcontrollers.common.interceptors.logger.LoggerInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

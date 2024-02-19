@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.filters.checkpermission;
+package com.test.coursemanagementspring.inbounds.httpcontrollers.common.aspects.checkpermission;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

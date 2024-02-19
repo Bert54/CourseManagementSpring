@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.core.errors;
+package com.test.coursemanagementspring.core.common.errors;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String message) {

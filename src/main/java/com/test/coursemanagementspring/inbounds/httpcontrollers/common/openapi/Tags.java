@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.openapi;
+package com.test.coursemanagementspring.inbounds.httpcontrollers.common.openapi;
 
 public class Tags {
     public static final String HELLO_TAG = "hello";

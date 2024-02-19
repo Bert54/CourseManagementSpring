@@ -1,8 +1,8 @@
 package com.test.coursemanagementspring.outbounds.databases.sql.classs;
 
-import com.test.coursemanagementspring.core.errors.AlreadyExistsException;
-import com.test.coursemanagementspring.core.errors.DeletionException;
-import com.test.coursemanagementspring.core.errors.NotFoundException;
+import com.test.coursemanagementspring.core.common.errors.AlreadyExistsException;
+import com.test.coursemanagementspring.core.common.errors.DeletionException;
+import com.test.coursemanagementspring.core.common.errors.NotFoundException;
 import com.test.coursemanagementspring.core.services.classs.adapters.ClassDaoAdapter;
 import com.test.coursemanagementspring.core.services.classs.entities.Class;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;

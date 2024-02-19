@@ -1,7 +1,7 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler;
+package com.test.coursemanagementspring.inbounds.httpcontrollers.common.errorhandler;
 
-import com.test.coursemanagementspring.core.errors.*;
-import com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler.object.ErrorObject;
+import com.test.coursemanagementspring.core.common.errors.*;
+import com.test.coursemanagementspring.inbounds.httpcontrollers.common.errorhandler.object.ErrorObject;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

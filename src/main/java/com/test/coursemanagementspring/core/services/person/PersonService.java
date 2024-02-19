@@ -1,6 +1,6 @@
 package com.test.coursemanagementspring.core.services.person;
 
-import com.test.coursemanagementspring.core.errors.ValidationException;
+import com.test.coursemanagementspring.core.common.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonDaoAdapter;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonServiceAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;

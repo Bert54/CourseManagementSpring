@@ -1,6 +1,6 @@
 package com.test.coursemanagementspring.inbounds.dto.classs;
 
-import com.test.coursemanagementspring.core.errors.ValidationException;
+import com.test.coursemanagementspring.core.common.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.classs.entities.Class;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;

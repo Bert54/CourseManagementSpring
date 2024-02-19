@@ -1,9 +1,9 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.filters.checkpermission;
+package com.test.coursemanagementspring.inbounds.httpcontrollers.common.aspects.checkpermission;
 
-import com.test.coursemanagementspring.core.errors.ForbiddenException;
-import com.test.coursemanagementspring.core.errors.NotFoundException;
-import com.test.coursemanagementspring.core.errors.UnauthorizedException;
-import com.test.coursemanagementspring.core.errors.ValidationException;
+import com.test.coursemanagementspring.core.common.errors.ForbiddenException;
+import com.test.coursemanagementspring.core.common.errors.NotFoundException;
+import com.test.coursemanagementspring.core.common.errors.UnauthorizedException;
+import com.test.coursemanagementspring.core.common.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonDaoAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
 import jakarta.servlet.http.HttpServletRequest;

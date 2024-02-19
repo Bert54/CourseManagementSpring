@@ -3,8 +3,8 @@ package com.test.coursemanagementspring.inbounds.httpcontrollers.appcontrollers.
 import com.test.coursemanagementspring.core.services.classs.adapters.ClassServiceAdapter;
 import com.test.coursemanagementspring.core.services.classs.entities.Class;
 import com.test.coursemanagementspring.inbounds.dto.classs.AddClassDto;
-import com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler.object.ErrorObject;
-import com.test.coursemanagementspring.inbounds.httpcontrollers.filters.checkpermission.CheckPermission;
+import com.test.coursemanagementspring.inbounds.httpcontrollers.common.errorhandler.object.ErrorObject;
+import com.test.coursemanagementspring.inbounds.httpcontrollers.common.aspects.checkpermission.CheckPermission;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -18,9 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import static com.test.coursemanagementspring.core.permissions.Permissions.CLASS_CREATE;
-import static com.test.coursemanagementspring.core.permissions.Permissions.CLASS_DELETE;
-import static com.test.coursemanagementspring.inbounds.httpcontrollers.openapi.Tags.CLASS_TAG;
+import static com.test.coursemanagementspring.core.common.permissions.Permissions.CLASS_CREATE;
+import static com.test.coursemanagementspring.core.common.permissions.Permissions.CLASS_DELETE;
+import static com.test.coursemanagementspring.inbounds.httpcontrollers.common.openapi.Tags.CLASS_TAG;
 
 @RestController
 @RequestMapping("/api/v1/class")

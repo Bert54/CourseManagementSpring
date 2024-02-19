@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.core.permissions;
+package com.test.coursemanagementspring.core.common.permissions;
 
 public class Permissions {
     public static final String PERSON_CREATE = "person.create";

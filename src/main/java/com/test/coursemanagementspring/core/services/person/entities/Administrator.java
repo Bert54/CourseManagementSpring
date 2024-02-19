@@ -2,7 +2,7 @@ package com.test.coursemanagementspring.core.services.person.entities;
 
 import java.util.List;
 
-import static com.test.coursemanagementspring.core.permissions.Permissions.*;
+import static com.test.coursemanagementspring.core.common.permissions.Permissions.*;
 
 public class Administrator extends Person {
     public Administrator(String name) {

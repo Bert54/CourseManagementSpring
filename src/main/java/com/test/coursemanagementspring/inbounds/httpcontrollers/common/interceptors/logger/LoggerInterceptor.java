@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.interceptors.logger;
+package com.test.coursemanagementspring.inbounds.httpcontrollers.common.interceptors.logger;
 
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import jakarta.servlet.http.HttpServletRequest;

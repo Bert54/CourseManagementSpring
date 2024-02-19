@@ -1,11 +1,11 @@
 package com.test.coursemanagementspring.inbounds.httpcontrollers.appcontrollers.person;
 
-import com.test.coursemanagementspring.core.errors.ValidationException;
+import com.test.coursemanagementspring.core.common.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonServiceAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
 import com.test.coursemanagementspring.inbounds.dto.person.AddPersonDto;
-import com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler.object.ErrorObject;
-import com.test.coursemanagementspring.inbounds.httpcontrollers.filters.checkpermission.CheckPermission;
+import com.test.coursemanagementspring.inbounds.httpcontrollers.common.errorhandler.object.ErrorObject;
+import com.test.coursemanagementspring.inbounds.httpcontrollers.common.aspects.checkpermission.CheckPermission;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -19,8 +19,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import static com.test.coursemanagementspring.core.permissions.Permissions.PERSON_CREATE;
-import static com.test.coursemanagementspring.inbounds.httpcontrollers.openapi.Tags.PERSON_TAG;
+import static com.test.coursemanagementspring.core.common.permissions.Permissions.PERSON_CREATE;
+import static com.test.coursemanagementspring.inbounds.httpcontrollers.common.openapi.Tags.PERSON_TAG;
 
 @RestController
 @RequestMapping("/api/v1/person")
