@@ -2,6 +2,7 @@ package com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler;
 
 import com.test.coursemanagementspring.core.errors.*;
 import com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler.object.ErrorObject;
+import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -9,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -17,6 +17,13 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @ControllerAdvice
 public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
+    private final LoggerAdapter logger;
+
+    public ExceptionHandlerController(LoggerAdapter logger) {
+        super();
+        this.logger = logger;
+    }
+
     @ExceptionHandler({ValidationException.class, AlreadyExistsException.class})
     public ResponseEntity<Object> handleBadRequestError(Exception e, WebRequest request) {
         return handleGeneric(e, request, 400, ErrorObject.BAD_REQUEST, HttpStatus.BAD_REQUEST);
@@ -52,6 +59,7 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     // handle all unhandled errors here.
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleUnhandledError(Exception e, WebRequest request) {
+        this.logger.warn(String.format("An unexpected error occurred. Error: '%s'", e.toString()));
         return handleGeneric(e, request, 500, ErrorObject.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
     }
     // any new errors to handle should be put above the method above

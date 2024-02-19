@@ -19,6 +19,11 @@ public class AppLogger implements LoggerAdapter {
     }
 
     @Override
+    public void warn(String message) {
+        this.logger.warn(message);
+    }
+
+    @Override
     public void http(String route, String method, int status, long responseTime) {
         String responseTimeFormat;
         if (responseTime > 1000) {
@@ -26,6 +31,12 @@ public class AppLogger implements LoggerAdapter {
         } else {
             responseTimeFormat = String.format("%d ms", responseTime);
         }
-        this.logger.info(String.format("http %s %s - Status %d - %s", method, route, status, responseTimeFormat));
+        String message = String.format("http %s %s - Status %d - %s", method, route, status, responseTimeFormat);
+        if (status >= 500 && status < 600) {
+            this.warn(message);
+        } else {
+            this.info(message);
+        }
+
     }
 }

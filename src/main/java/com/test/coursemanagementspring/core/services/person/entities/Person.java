@@ -8,7 +8,6 @@ public abstract class Person implements Serializable {
     public static final int NAME_MAX_LENGTH = 100;
 
     private int id;
-
     private String name;
 
     protected Person(String name) {
