@@ -41,7 +41,7 @@ public class CheckPermissionAspect {
 
         String idStr = req.getHeader(permissionHeader);
         if (idStr == null || idStr.isEmpty()) {
-            throw new UnauthorizedException(String.format("Authentication: '%s' header is missing or empty", permissionHeader));
+            throw new UnauthorizedException("Authentication: header is missing or empty");
         }
 
         int id;

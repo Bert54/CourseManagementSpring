@@ -37,7 +37,9 @@ public class PersonDao implements PersonDaoAdapter {
     public Person find(String name) throws NotFoundException {
         PersonEntity person = this.personRepository.find(name);
         if (person == null) {
-            throw new NotFoundException(String.format("Person with name '%s' was not found", name));
+            String message = String.format("Person with name '%s' was not found", name);
+            this.logger.info(message);
+            throw new NotFoundException(message);
         }
 
         return person.toCorePerson();
@@ -48,7 +50,9 @@ public class PersonDao implements PersonDaoAdapter {
         try {
             savedPerson = this.personRepository.save(this.toPersonEntity(person));
         } catch (DataIntegrityViolationException e) {
-            throw new AlreadyExistsException(String.format("Person with name '%s' already exists", person.getName()));
+            String message = String.format("Person with name '%s' already exists", person.getName());
+            this.logger.info(message);
+            throw new AlreadyExistsException(message);
         }
 
         return savedPerson.toCorePerson();

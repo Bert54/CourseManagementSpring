@@ -22,7 +22,7 @@ public class AppLogger implements LoggerAdapter {
     public void http(String route, String method, int status, long responseTime) {
         String responseTimeFormat;
         if (responseTime > 1000) {
-            responseTimeFormat = String.format("%d s", responseTime / 1000);
+            responseTimeFormat = String.format("%f s", (double) responseTime / 1000);
         } else {
             responseTimeFormat = String.format("%d ms", responseTime);
         }

@@ -6,6 +6,7 @@ import com.test.coursemanagementspring.core.services.person.entities.Person;
 import com.test.coursemanagementspring.inbounds.dto.person.AddPersonDto;
 import com.test.coursemanagementspring.inbounds.httpcontrollers.errorhandler.object.ErrorObject;
 import com.test.coursemanagementspring.inbounds.httpcontrollers.filters.checkpermission.CheckPermission;
+import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -26,9 +27,11 @@ import static com.test.coursemanagementspring.inbounds.httpcontrollers.openapi.T
 @Tag(name = PERSON_TAG, description = "Handle people")
 public class PersonController {
     private final PersonServiceAdapter personService;
+    private final LoggerAdapter logger;
 
-    PersonController(PersonServiceAdapter personService) {
+    PersonController(PersonServiceAdapter personService, LoggerAdapter logger) {
         this.personService = personService;
+        this.logger = logger;
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -66,7 +69,9 @@ public class PersonController {
         try {
             id = Integer.parseInt(idStr);
         } catch (NumberFormatException e) {
-            throw new ValidationException(String.format("'%s' is not a valid number", idStr));
+            String message = String.format("'%s' is not a valid number", idStr);
+            this.logger.info(message);
+            throw new ValidationException(message);
         }
 
         return this.personService.getPerson(id);
@@ -146,7 +151,13 @@ public class PersonController {
     })
     public Person addPerson(@RequestBody AddPersonDto person) {
         person.format();
-        person.validate();
+        try {
+            person.validate();
+        } catch (Exception e) {
+            this.logger.info(e.getMessage());
+            throw e;
+        }
+
         return this.personService.addPerson(person.toCorePerson());
     }
 }

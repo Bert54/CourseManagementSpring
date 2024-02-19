@@ -4,6 +4,8 @@ CREATE TABLE Person (
     role varchar(255) NOT NULL
 );
 
+CREATE INDEX index_person_name ON Person (name ASC);
+
 CREATE TABLE Course (
     id serial PRIMARY KEY,
     teacher_id int NOT NULL,
