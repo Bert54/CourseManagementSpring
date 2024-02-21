@@ -9,6 +9,7 @@ import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.A
 import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.PersonEntity;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.StudentEntity;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.TeacherEntity;
+import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.transformer.PersonTransformerAdaper;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.repositories.PersonRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -17,12 +18,15 @@ import org.springframework.stereotype.Component;
 public class PersonDao implements PersonDaoAdapter {
     private final PersonRepository personRepository;
     private final LoggerAdapter logger;
+    private final PersonTransformerAdaper personTransformer;
 
-    public PersonDao(PersonRepository personRepository, LoggerAdapter logger) {
+    public PersonDao(PersonRepository personRepository, LoggerAdapter logger, PersonTransformerAdaper personTransformer) {
         this.personRepository = personRepository;
         this.logger = logger;
+        this.personTransformer = personTransformer;
     }
 
+    @Override
     public Person find(int id) throws NotFoundException {
         PersonEntity person = this.personRepository.find(id);
         if (person == null) {
@@ -34,6 +38,7 @@ public class PersonDao implements PersonDaoAdapter {
         return person.toCorePerson();
     }
 
+    @Override
     public Person find(String name) throws NotFoundException {
         PersonEntity person = this.personRepository.find(name);
         if (person == null) {
@@ -45,6 +50,7 @@ public class PersonDao implements PersonDaoAdapter {
         return person.toCorePerson();
     }
 
+    @Override
     public Person save(Person person) {
         PersonEntity savedPerson;
         try {
@@ -58,13 +64,7 @@ public class PersonDao implements PersonDaoAdapter {
         return savedPerson.toCorePerson();
     }
 
-    private PersonEntity toPersonEntity(Person person) {
-        String name = person.getName();
-
-        return switch (person.getType()) {
-            case Student -> new StudentEntity(name);
-            case Administrator -> new AdministratorEntity(name);
-            case Teacher -> new TeacherEntity(name);
-        };
+    public PersonEntity toPersonEntity(Person person) {
+        return this.personTransformer.toPersonEntity(person);
     }
 }
