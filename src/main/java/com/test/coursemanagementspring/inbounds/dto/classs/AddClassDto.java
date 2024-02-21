@@ -19,6 +19,10 @@ public class AddClassDto {
     @Schema(description = "Name of the class")
     private String name;
 
+    public AddClassDto(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return this.name;
     }

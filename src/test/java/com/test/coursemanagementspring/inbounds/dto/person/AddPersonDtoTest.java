@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AddPersonDtoTest {
-
     @Test
     @DisplayName("Test format()")
     public void TestFormat() {
@@ -63,6 +62,7 @@ public class AddPersonDtoTest {
     @DisplayName("Test validate() - Name too short")
     public void TestValidateNameTooLong() {
         AddPersonDto dto = new AddPersonDto(
+                // 101 characters
                 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                 "administrator");
         assertThrows(ValidationException.class, dto::validate);

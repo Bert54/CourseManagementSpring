@@ -27,6 +27,11 @@ public class AddPersonDto {
     @Schema(description = "Role of the person", allowableValues = {ADMINISTRATOR_ROLE, TEACHER_ROLE, STUDENT_ROLE})
     private String role;
 
+    public AddPersonDto(String name, String role) {
+        this.name = name;
+        this.role = role;
+    }
+
     public String getName() {
         return this.name;
     }
@@ -34,11 +39,6 @@ public class AddPersonDto {
     @SuppressWarnings("unused") // Used by the OpenAPI documentation
     public String getRole() {
         return this.role;
-    }
-
-    public AddPersonDto(String name, String role) {
-        this.name = name;
-        this.role = role;
     }
 
     public void format() {
