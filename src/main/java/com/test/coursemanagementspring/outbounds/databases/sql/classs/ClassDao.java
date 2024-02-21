@@ -7,18 +7,21 @@ import com.test.coursemanagementspring.core.services.classs.adapters.ClassDaoAda
 import com.test.coursemanagementspring.core.services.classs.entities.Class;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import com.test.coursemanagementspring.outbounds.databases.sql.classs.entities.ClassEntity;
+import com.test.coursemanagementspring.outbounds.databases.sql.classs.entities.transformer.ClassTransformerAdapter;
 import com.test.coursemanagementspring.outbounds.databases.sql.classs.repositories.ClassRepository;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public class ClassDao implements ClassDaoAdapter {
     private final ClassRepository classRepository;
     private final LoggerAdapter logger;
+    private final ClassTransformerAdapter classTransformer;
 
-    public ClassDao(ClassRepository classRepository, LoggerAdapter logger) {
+    public ClassDao(ClassRepository classRepository, LoggerAdapter logger, ClassTransformerAdapter classTransformer) {
         this.classRepository = classRepository;
         this.logger = logger;
+        this.classTransformer = classTransformer;
     }
 
     @Override
@@ -60,7 +63,7 @@ public class ClassDao implements ClassDaoAdapter {
         return cls;
     }
 
-    private ClassEntity toClassEntity(Class cls) {
-        return new ClassEntity(cls.getId(), cls.getName());
+    public ClassEntity toClassEntity(Class cls) {
+        return this.classTransformer.toClassEntity(cls);
     }
 }

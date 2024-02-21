@@ -5,16 +5,13 @@ import com.test.coursemanagementspring.core.common.errors.NotFoundException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonDaoAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
-import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.AdministratorEntity;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.PersonEntity;
-import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.StudentEntity;
-import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.TeacherEntity;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.transformer.PersonTransformerAdaper;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.repositories.PersonRepository;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public class PersonDao implements PersonDaoAdapter {
     private final PersonRepository personRepository;
     private final LoggerAdapter logger;
