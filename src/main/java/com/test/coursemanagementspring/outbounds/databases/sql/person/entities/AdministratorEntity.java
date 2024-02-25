@@ -22,6 +22,8 @@ public class AdministratorEntity extends PersonEntity {
 
     @Override
     public Person toCorePerson() {
-        return new Administrator(this.id, this.name);
+        Person p = new Administrator(this.id, this.name);
+        this.toCorePersonSetClasses(p);
+        return p;
     }
 }

@@ -22,6 +22,8 @@ public class TeacherEntity extends PersonEntity {
 
     @Override
     public Person toCorePerson() {
-        return new Teacher(this.id, this.name);
+        Person p = new Teacher(this.id, this.name);
+        this.toCorePersonSetClasses(p);
+        return p;
     }
 }

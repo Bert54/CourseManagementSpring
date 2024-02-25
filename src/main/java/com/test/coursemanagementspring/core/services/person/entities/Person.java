@@ -1,6 +1,11 @@
 package com.test.coursemanagementspring.core.services.person.entities;
 
+import com.test.coursemanagementspring.core.services.classs.entities.Class;
+import com.test.coursemanagementspring.core.services.classs.entities.Membership;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Person implements Serializable {
@@ -9,6 +14,7 @@ public abstract class Person implements Serializable {
 
     private int id;
     private String name;
+    private List<Class> classes;
 
     protected Person(String name) {
         this.name = name;
@@ -17,6 +23,7 @@ public abstract class Person implements Serializable {
     protected Person(int id, String name) {
         this.id = id;
         this.name = name;
+        this.classes = new ArrayList<>();
     }
 
     public int getId() {
@@ -33,6 +40,18 @@ public abstract class Person implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Class> getClasses() {
+        return Collections.unmodifiableList(this.classes);
+    }
+
+    public void setClasses(List<Class> classes) {
+        this.classes = classes;
+    }
+
+    public void addClass(Class cls) {
+        this.classes.add(cls);
     }
 
     abstract public PersonType getType();

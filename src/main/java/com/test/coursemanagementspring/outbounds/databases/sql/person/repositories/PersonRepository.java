@@ -6,10 +6,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.lang.NonNull;
 
 public interface PersonRepository extends CrudRepository<PersonEntity, Integer> {
-    @Query("SELECT person FROM PersonEntity person WHERE person.id = :id")
+    @Query("SELECT person FROM PersonEntity person LEFT JOIN MembershipEntity m ON person.id = m.personId WHERE person.id = :id")
     PersonEntity find(int id);
 
-    @Query("SELECT person FROM PersonEntity person WHERE person.name = :name")
+    @Query("SELECT person FROM PersonEntity person LEFT JOIN MembershipEntity m ON person.id = m.personId WHERE person.name = :name")
     PersonEntity find(String name);
 
     @NonNull
