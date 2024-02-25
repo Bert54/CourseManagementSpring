@@ -25,8 +25,7 @@ public abstract class PersonEntity {
     @Column(unique = true)
     protected String name;
 
-    @OneToMany
-    @JoinColumn(referencedColumnName = "id")
+    @OneToMany(mappedBy = "personEntity")
     protected List<MembershipEntity> memberships;
 
     public PersonEntity() {}

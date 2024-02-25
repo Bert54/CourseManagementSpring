@@ -1,5 +1,6 @@
 package com.test.coursemanagementspring.inbounds.dto.classs;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.test.coursemanagementspring.core.common.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.classs.entities.Class;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -19,7 +20,7 @@ public class AddClassDto {
     @Schema(description = "Name of the class")
     private String name;
 
-    public AddClassDto(String name) {
+    public AddClassDto(@JsonProperty("name")  String name) {
         this.name = name;
     }
 

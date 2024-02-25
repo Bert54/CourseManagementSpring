@@ -4,6 +4,8 @@ import com.test.coursemanagementspring.core.services.classs.entities.Class;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 import static com.test.coursemanagementspring.core.services.classs.entities.Class.NAME_MAX_LENGTH;
 import static com.test.coursemanagementspring.core.services.classs.entities.Class.NAME_MIN_LENGTH;
 
@@ -18,6 +20,9 @@ public class ClassEntity {
     @Column(unique = true)
     @Size(min = NAME_MIN_LENGTH, max = NAME_MAX_LENGTH)
     private String name;
+
+    @OneToMany(mappedBy = "classEntity")
+    private List<MembershipEntity> memberships;
 
     public ClassEntity() {}
 
