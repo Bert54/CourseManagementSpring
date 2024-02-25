@@ -19,9 +19,7 @@ public class ClassEntity {
     @Size(min = NAME_MIN_LENGTH, max = NAME_MAX_LENGTH)
     private String name;
 
-    public ClassEntity() {
-
-    }
+    public ClassEntity() {}
 
     public ClassEntity(String name) {
         this.name = name;

@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.common.aspects.checkpermission;
+package com.test.coursemanagementspring.inbounds.http.common.aspects.checkpermission;
 
 import com.test.coursemanagementspring.core.common.errors.ForbiddenException;
 import com.test.coursemanagementspring.core.common.errors.NotFoundException;
@@ -17,7 +17,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Aspect
 @Component
 public class CheckPermissionAspect {
-    public static final String permissionHeader = "x-personid";
+    public static final String PERMISSION_HEADER = "x-personid";
 
     private final PersonDaoAdapter personDao;
 
@@ -39,7 +39,7 @@ public class CheckPermissionAspect {
             return joinPoint.proceed();
         }
 
-        String idStr = req.getHeader(permissionHeader);
+        String idStr = req.getHeader(PERMISSION_HEADER);
         if (idStr == null || idStr.isEmpty()) {
             throw new UnauthorizedException("Authentication: header is missing or empty");
         }

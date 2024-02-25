@@ -15,13 +15,22 @@ public class MembershipEntity {
     @Id
     private String className;
 
+    public MembershipEntity(int personId, String className) {
+        this.personId = personId;
+        this.className = className;
+    }
+
     @OneToOne
-    @JoinColumn(name="person_id", referencedColumnName = "id")
+    @Transient
+    @JoinColumn(referencedColumnName = "id")
     private PersonEntity personEntity;
 
     @OneToOne
-    @JoinColumn(name="class_name", referencedColumnName = "name")
+    @Transient
+    @JoinColumn(referencedColumnName = "name")
     private ClassEntity classEntity;
+
+    public MembershipEntity() {}
 
     public ClassEntity getClassEntity() {
         return this.classEntity;

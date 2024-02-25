@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.common.errorhandler.object;
+package com.test.coursemanagementspring.inbounds.http.common.errorhandler.object;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

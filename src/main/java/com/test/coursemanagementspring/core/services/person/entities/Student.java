@@ -2,6 +2,8 @@ package com.test.coursemanagementspring.core.services.person.entities;
 
 import java.util.List;
 
+import static com.test.coursemanagementspring.core.common.permissions.Permissions.CLASS_JOIN;
+
 public class Student extends Person{
     public Student(String name) {
         super(name);
@@ -17,6 +19,8 @@ public class Student extends Person{
 
     @Override
     public List<String> getPermissions() {
-        return List.of();
+        return List.of(
+                CLASS_JOIN
+        );
     }
 }

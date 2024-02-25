@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.appcontrollers.helloworld;
+package com.test.coursemanagementspring.inbounds.http.controllers.helloworld;
 
 import com.test.coursemanagementspring.core.services.helloworld.adapters.HelloWorldServiceBase;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.test.coursemanagementspring.inbounds.httpcontrollers.common.openapi.Tags.HELLO_TAG;
+import static com.test.coursemanagementspring.inbounds.http.common.openapi.Tags.HELLO_TAG;
 
 @RestController
 @RequestMapping(value = "/api/v1/hello")

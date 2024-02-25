@@ -1,12 +1,13 @@
-package com.test.coursemanagementspring.inbounds.httpcontrollers.common.errorhandler;
+package com.test.coursemanagementspring.inbounds.http.common.errorhandler;
 
 import com.test.coursemanagementspring.core.common.errors.*;
-import com.test.coursemanagementspring.inbounds.httpcontrollers.common.errorhandler.object.ErrorObject;
+import com.test.coursemanagementspring.inbounds.http.common.errorhandler.object.ErrorObject;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -54,6 +55,12 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     @Override
     public ResponseEntity<Object> handleNoResourceFoundException(@Nullable NoResourceFoundException ex, @Nullable HttpHeaders headers, @Nullable HttpStatusCode status, @Nullable WebRequest request) {
         return handleNotFoundError(ex, request);
+    }
+
+    // the method below allow us to customize the default "unreadable request" errors managed by Spring
+    @Override
+    public ResponseEntity<Object> handleHttpMessageNotReadable(@Nullable HttpMessageNotReadableException ex, @Nullable HttpHeaders headers, @Nullable HttpStatusCode status, @Nullable WebRequest request) {
+        return handleBadRequestError(ex, request);
     }
 
     // handle all unhandled errors here.

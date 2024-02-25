@@ -4,9 +4,9 @@ import com.test.coursemanagementspring.core.common.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonDaoAdapter;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonServiceAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class PersonService implements PersonServiceAdapter {
     private final PersonDaoAdapter personDao;
 

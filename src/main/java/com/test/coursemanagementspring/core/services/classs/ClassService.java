@@ -3,9 +3,9 @@ package com.test.coursemanagementspring.core.services.classs;
 import com.test.coursemanagementspring.core.services.classs.adapters.ClassDaoAdapter;
 import com.test.coursemanagementspring.core.services.classs.adapters.ClassServiceAdapter;
 import com.test.coursemanagementspring.core.services.classs.entities.Class;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class ClassService implements ClassServiceAdapter {
     private final ClassDaoAdapter classDao;
 
