@@ -4,12 +4,10 @@ import com.test.coursemanagementspring.core.common.errors.AlreadyExistsException
 import com.test.coursemanagementspring.core.common.errors.DeletionException;
 import com.test.coursemanagementspring.core.common.errors.NotFoundException;
 import com.test.coursemanagementspring.core.services.classs.entities.Class;
-import com.test.coursemanagementspring.core.services.person.entities.Person;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import com.test.coursemanagementspring.outbounds.databases.sql.classs.entities.ClassEntity;
 import com.test.coursemanagementspring.outbounds.databases.sql.classs.entities.transformer.ClassTransformerAdapter;
 import com.test.coursemanagementspring.outbounds.databases.sql.classs.repositories.ClassRepository;
-import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.PersonEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
