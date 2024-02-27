@@ -5,7 +5,7 @@ import com.test.coursemanagementspring.core.common.errors.NotFoundException;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.PersonEntity;
-import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.transformer.PersonTransformerAdaper;
+import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.transformer.PersonTransformerAdapter;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.repositories.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,14 +24,12 @@ public class PersonDaoTest {
 
     @BeforeEach
     public void setupDependencies() {
-        Dependencies dependencies = new Dependencies();
-        dependencies.logger = Mockito.mock(LoggerAdapter.class);
-        dependencies.personRepository = Mockito.mock(PersonRepository.class);
-        dependencies.personTransformer = Mockito.mock(PersonTransformerAdaper.class);
+        this.dependencies = new Dependencies();
+        this.dependencies.logger = Mockito.mock(LoggerAdapter.class);
+        this.dependencies.personRepository = Mockito.mock(PersonRepository.class);
+        this.dependencies.personTransformer = Mockito.mock(PersonTransformerAdapter.class);
 
         this.personDao = new PersonDao(dependencies.personRepository, dependencies.logger, dependencies.personTransformer);
-
-        this.dependencies = dependencies;
     }
 
     @Test

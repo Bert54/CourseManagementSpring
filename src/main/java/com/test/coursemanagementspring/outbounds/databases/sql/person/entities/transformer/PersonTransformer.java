@@ -8,7 +8,7 @@ import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.T
 import org.springframework.stereotype.Component;
 
 @Component
-public class PersonTransformer implements PersonTransformerAdaper {
+public class PersonTransformer implements PersonTransformerAdapter {
     @Override
     public PersonEntity toPersonEntity(Person person) {
         String name = person.getName();

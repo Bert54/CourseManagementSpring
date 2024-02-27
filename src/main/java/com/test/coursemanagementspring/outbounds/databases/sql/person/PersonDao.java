@@ -6,7 +6,7 @@ import com.test.coursemanagementspring.core.services.person.adapters.PersonDaoAd
 import com.test.coursemanagementspring.core.services.person.entities.Person;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.PersonEntity;
-import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.transformer.PersonTransformerAdaper;
+import com.test.coursemanagementspring.outbounds.databases.sql.person.entities.transformer.PersonTransformerAdapter;
 import com.test.coursemanagementspring.outbounds.databases.sql.person.repositories.PersonRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
@@ -15,9 +15,9 @@ import org.springframework.stereotype.Repository;
 public class PersonDao implements PersonDaoAdapter {
     private final PersonRepository personRepository;
     private final LoggerAdapter logger;
-    private final PersonTransformerAdaper personTransformer;
+    private final PersonTransformerAdapter personTransformer;
 
-    public PersonDao(PersonRepository personRepository, LoggerAdapter logger, PersonTransformerAdaper personTransformer) {
+    public PersonDao(PersonRepository personRepository, LoggerAdapter logger, PersonTransformerAdapter personTransformer) {
         this.personRepository = personRepository;
         this.logger = logger;
         this.personTransformer = personTransformer;
