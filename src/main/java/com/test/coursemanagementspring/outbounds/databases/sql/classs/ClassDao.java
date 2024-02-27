@@ -33,7 +33,7 @@ public class ClassDao implements ClassDaoAdapter {
             throw new NotFoundException(message);
         }
 
-        return cls.toCoreClass();
+        return cls.toCoreClass(true);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class ClassDao implements ClassDaoAdapter {
             throw new AlreadyExistsException(message);
         }
 
-        return savedClass.toCoreClass();
+        return savedClass.toCoreClass(true);
     }
 
     @Override

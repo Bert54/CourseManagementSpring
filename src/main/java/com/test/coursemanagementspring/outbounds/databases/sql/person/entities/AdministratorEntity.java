@@ -21,9 +21,11 @@ public class AdministratorEntity extends PersonEntity {
     }
 
     @Override
-    public Person toCorePerson() {
+    public Person toCorePerson(boolean transformClass) {
         Person p = new Administrator(this.id, this.name);
-        this.toCorePersonSetClasses(p);
+        if (transformClass) {
+            this.toCorePersonSetClasses(p);
+        }
         return p;
     }
 }

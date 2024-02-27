@@ -1,7 +1,9 @@
 package com.test.coursemanagementspring.core.services.person.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.test.coursemanagementspring.core.services.classs.entities.Class;
-import com.test.coursemanagementspring.core.services.classs.entities.Membership;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public abstract class Person implements Serializable {
         this.name = name;
     }
 
+    @JsonInclude(value = JsonInclude.Include.NON_EMPTY, content = JsonInclude.Include.NON_NULL)
     public List<Class> getClasses() {
         return Collections.unmodifiableList(this.classes);
     }
@@ -56,5 +59,6 @@ public abstract class Person implements Serializable {
 
     abstract public PersonType getType();
 
+    @JsonIgnore
     abstract public List<String> getPermissions();
 }

@@ -21,9 +21,11 @@ public class TeacherEntity extends PersonEntity {
     }
 
     @Override
-    public Person toCorePerson() {
+    public Person toCorePerson(boolean transformClass) {
         Person p = new Teacher(this.id, this.name);
-        this.toCorePersonSetClasses(p);
+        if (transformClass) {
+            this.toCorePersonSetClasses(p);
+        }
         return p;
     }
 }

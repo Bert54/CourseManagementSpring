@@ -35,6 +35,10 @@ public class MembershipEntity {
         return this.classEntity;
     }
 
+    public PersonEntity getPersonEntity() {
+        return this.personEntity;
+    }
+
     public Membership toCoreMembership() {
         return new Membership(this.personId, this.className);
     }

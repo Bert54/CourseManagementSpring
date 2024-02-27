@@ -74,9 +74,9 @@ public abstract class PersonEntity {
         }
 
         for (MembershipEntity membership: this.memberships) {
-            person.addClass(membership.getClassEntity().toCoreClass());
+            person.addClass(membership.getClassEntity().toCoreClass(false));
         }
     }
 
-    abstract public Person toCorePerson();
+    abstract public Person toCorePerson(boolean transformClass);
 }

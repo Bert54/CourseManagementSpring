@@ -3,11 +3,9 @@ package com.test.coursemanagementspring.inbounds.http.common.errorhandler;
 import com.test.coursemanagementspring.core.common.errors.*;
 import com.test.coursemanagementspring.inbounds.http.common.errorhandler.object.ErrorObject;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -63,15 +61,25 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
         return handleBadRequestError(ex, request);
     }
 
+    @Override
+    public ResponseEntity<Object> handleHttpMessageNotWritable(@Nullable HttpMessageNotWritableException ex, @Nullable HttpHeaders headers, @Nullable HttpStatusCode status, @Nullable WebRequest request) {
+        return handleUnhandledError(ex, request);
+    }
+
     // handle all unhandled errors here.
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleUnhandledError(Exception e, WebRequest request) {
-        this.logger.warn(String.format("An unexpected error occurred. Error: '%s'", e.toString()));
+        if (e != null){
+            this.logger.warn(String.format("An unexpected error occurred. Error: '%s'", e));
+        }
         return handleGeneric(e, request, 500, ErrorObject.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
     }
     // any new errors to handle should be put above the method above
 
     private ResponseEntity<Object> handleGeneric(Exception e, WebRequest request, int code, String status, HttpStatus httpStatus) {
+        if (e == null) {
+            e = new Exception("Unknown error");
+        }
         ErrorObject errorObject = new ErrorObject(code, status, e.getMessage());
         return handleExceptionInternal(e, errorObject, new HttpHeaders(), httpStatus, request);
     }

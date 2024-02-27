@@ -41,11 +41,11 @@ public class PersonDaoTest {
         when(this.dependencies.personRepository.find(anyInt())).thenReturn(personEntity);
 
         Person person = Mockito.mock(Person.class);
-        when(personEntity.toCorePerson()).thenReturn(person);
+        when(personEntity.toCorePerson(anyBoolean())).thenReturn(person);
 
         assertSame(person, this.personDao.find(anyInt()));
         verify(this.dependencies.personRepository, times(1)).find(anyInt());
-        verify(personEntity, times(1)).toCorePerson();
+        verify(personEntity, times(1)).toCorePerson(anyBoolean());
     }
 
     @Test
@@ -62,11 +62,11 @@ public class PersonDaoTest {
         when(this.dependencies.personRepository.find(anyString())).thenReturn(personEntity);
 
         Person person = Mockito.mock(Person.class);
-        when(personEntity.toCorePerson()).thenReturn(person);
+        when(personEntity.toCorePerson(anyBoolean())).thenReturn(person);
 
         assertSame(person, this.personDao.find(anyString()));
         verify(this.dependencies.personRepository, times(1)).find(anyString());
-        verify(personEntity, times(1)).toCorePerson();
+        verify(personEntity, times(1)).toCorePerson(anyBoolean());
     }
 
     @Test
@@ -83,12 +83,12 @@ public class PersonDaoTest {
         PersonEntity personEntity = Mockito.mock(PersonEntity.class);
         Person person = Mockito.mock(Person.class);
         when(this.dependencies.personRepository.save(personEntity)).thenReturn(personEntity);
-        when(personEntity.toCorePerson()).thenReturn(person);
+        when(personEntity.toCorePerson(anyBoolean())).thenReturn(person);
         when(this.dependencies.personTransformer.toPersonEntity(person)).thenReturn(personEntity);
 
         assertSame(person, personDaoSpy.save(person));
         verify(this.dependencies.personRepository, times(1)).save(personEntity);
-        verify(personEntity, times(1)).toCorePerson();
+        verify(personEntity, times(1)).toCorePerson(anyBoolean());
         verify(personDaoSpy, times(1)).toPersonEntity(person);
         verify(this.dependencies.personTransformer, times(1)).toPersonEntity(person);
     }
@@ -104,7 +104,7 @@ public class PersonDaoTest {
 
         assertThrows(AlreadyExistsException.class, () -> personDaoSpy.save(person));
         verify(this.dependencies.personRepository, times(1)).save(personEntity);
-        verify(personEntity, times(0)).toCorePerson();
+        verify(personEntity, times(0)).toCorePerson(anyBoolean());
         verify(personDaoSpy, times(1)).toPersonEntity(person);
         verify(this.dependencies.personTransformer, times(1)).toPersonEntity(person);
     }

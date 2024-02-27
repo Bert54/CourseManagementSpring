@@ -32,7 +32,7 @@ public class PersonDao implements PersonDaoAdapter {
             throw new NotFoundException(message);
         }
 
-        return person.toCorePerson();
+        return person.toCorePerson(true);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class PersonDao implements PersonDaoAdapter {
             throw new NotFoundException(message);
         }
 
-        return person.toCorePerson();
+        return person.toCorePerson(true);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class PersonDao implements PersonDaoAdapter {
             throw new AlreadyExistsException(message);
         }
 
-        return savedPerson.toCorePerson();
+        return savedPerson.toCorePerson(true);
     }
 
     public PersonEntity toPersonEntity(Person person) {

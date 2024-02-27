@@ -4,6 +4,8 @@ import com.test.coursemanagementspring.core.services.classs.entities.Class;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.test.coursemanagementspring.core.services.classs.entities.Class.NAME_MAX_LENGTH;
@@ -33,6 +35,7 @@ public class ClassEntity {
     public ClassEntity(int id, String name) {
         this.id = id;
         this.name = name;
+        this.memberships = new ArrayList<>();
     }
 
     public int getId() {
@@ -51,7 +54,25 @@ public class ClassEntity {
         this.name = name;
     }
 
-    public Class toCoreClass() {
-        return new Class(this.id, this.name);
+    public List<MembershipEntity> getMemberships() {
+        return Collections.unmodifiableList(this.memberships);
+    }
+
+    public void setMemberships(List<MembershipEntity> list) {
+        this.memberships = list;
+    }
+
+    public Class toCoreClass(boolean transformPerson) {
+        Class cls = new Class(this.id, this.name);
+        if (!transformPerson) {
+            return cls;
+        }
+
+        if (this.memberships != null) {
+            for (MembershipEntity m: this.memberships) {
+                cls.addMember(m.getPersonEntity().toCorePerson(false));
+            }
+        }
+        return cls;
     }
 }

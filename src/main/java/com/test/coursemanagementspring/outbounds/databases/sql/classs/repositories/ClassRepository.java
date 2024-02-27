@@ -8,7 +8,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface ClassRepository extends CrudRepository<ClassEntity, Integer> {
-    @Query("SELECT class FROM ClassEntity class WHERE class.name = :name")
+    @Query("SELECT class FROM ClassEntity class LEFT JOIN MembershipEntity m ON class.name = m.className WHERE class.name = :name")
     ClassEntity find(String name);
 
     @NonNull
