@@ -4,12 +4,13 @@ import com.test.coursemanagementspring.core.common.errors.AlreadyExistsException
 import com.test.coursemanagementspring.core.common.errors.NotFoundException;
 import com.test.coursemanagementspring.core.services.classs.adapters.ClassDaoAdapter;
 import com.test.coursemanagementspring.core.services.classs.adapters.MembershipDaoAdapter;
+import com.test.coursemanagementspring.core.services.classs.adapters.options.MembershipOptions;
+import com.test.coursemanagementspring.core.services.classs.adapters.options.MembershipSingleOption;
 import com.test.coursemanagementspring.core.services.classs.entities.Membership;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import com.test.coursemanagementspring.outbounds.databases.sql.classs.entities.MembershipEntity;
 import com.test.coursemanagementspring.outbounds.databases.sql.classs.entities.transformer.MembershipTransformerAdapter;
 import com.test.coursemanagementspring.outbounds.databases.sql.classs.repositories.MembershipRepository;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -37,7 +38,7 @@ public class MembershipDao implements MembershipDaoAdapter {
         this.classDao.find(membership.getClassName());
         // then check for existence of membership
         try {
-            this.find(membership.getPersonId(), membership.getClassName(), false);
+            this.find(membership.getPersonId(), membership.getClassName(), MembershipOptions::withoutLog);
             // did not throw, so membership already exists
             String message = String.format("Membership for person with id '%d' and class '%s' already exists", membership.getPersonId(), membership.getClassName());
             this.logger.info(message);
@@ -52,11 +53,16 @@ public class MembershipDao implements MembershipDaoAdapter {
     }
 
     @Override
-    public Membership find(int personId, String className, boolean log) {
+    public Membership find(int personId, String className, MembershipSingleOption... options) {
+        MembershipOptions optionsToUse = new MembershipOptions();
+        for (MembershipSingleOption fn: options) {
+            fn.setOption(optionsToUse);
+        }
+
         MembershipEntity membership = this.membershipRepository.find(personId, className);
         if (membership == null) {
             String message = String.format("Membership for person with id '%d' and class '%s' was not found", personId, className);
-            if (log) {
+            if (optionsToUse.isWithLog()) {
                 this.logger.info(message);
             }
             throw new NotFoundException(message);
