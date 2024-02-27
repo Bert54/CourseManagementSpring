@@ -22,7 +22,7 @@ public class MembershipEntity {
 
     @ManyToOne
     @JoinColumn(name="class_name", referencedColumnName = "name")
-    private com.test.coursemanagementspring.outbounds.databases.sql.classs.entities.ClassEntity classEntity;
+    private ClassEntity classEntity;
 
     public MembershipEntity(int personId, String className) {
         this.personId = personId;
@@ -31,7 +31,7 @@ public class MembershipEntity {
 
     public MembershipEntity() {}
 
-    public com.test.coursemanagementspring.outbounds.databases.sql.classs.entities.ClassEntity getClassEntity() {
+    public ClassEntity getClassEntity() {
         return this.classEntity;
     }
 
