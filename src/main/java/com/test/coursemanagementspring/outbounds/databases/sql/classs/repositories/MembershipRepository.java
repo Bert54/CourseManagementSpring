@@ -21,4 +21,9 @@ public interface MembershipRepository extends CrudRepository<MembershipEntity, M
 
     @Query("SELECT membership FROM MembershipEntity membership WHERE membership.className = :className AND membership.personId = :personId")
     MembershipEntity find(int personId, String className);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM MembershipEntity membership WHERE membership.className = :name AND membership.personId = :personId")
+    int delete(int personId, String name);
 }

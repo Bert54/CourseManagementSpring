@@ -17,6 +17,6 @@ public interface ClassRepository extends CrudRepository<ClassEntity, Integer> {
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM ClassEntity AS class WHERE class.name = :name")
+    @Query("DELETE FROM ClassEntity class WHERE class.name = :name")
     int delete(String name);
 }

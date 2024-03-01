@@ -1,6 +1,7 @@
 package com.test.coursemanagementspring.outbounds.databases.sql.classs;
 
 import com.test.coursemanagementspring.core.common.errors.AlreadyExistsException;
+import com.test.coursemanagementspring.core.common.errors.DeletionException;
 import com.test.coursemanagementspring.core.common.errors.NotFoundException;
 import com.test.coursemanagementspring.core.services.classs.adapters.ClassDaoAdapter;
 import com.test.coursemanagementspring.core.services.classs.adapters.MembershipDaoAdapter;
@@ -69,5 +70,23 @@ public class MembershipDao implements MembershipDaoAdapter {
         }
 
         return membership.toCoreMembership();
+    }
+
+    public Membership delete(int personId, String className) {
+        // first check for existence of class
+        this.classDao.find(className);
+
+        // then check for existence of membership
+        Membership membership = this.find(personId, className);
+
+        // perform the operation
+        int deletedRows = this.membershipRepository.delete(personId, className);
+        if (deletedRows == 0) {
+            String message = String.format("Could not delete membership for person with id '%d' of class '%s'", personId, className);
+            this.logger.info(message);
+            throw new DeletionException(message);
+        }
+
+        return membership;
     }
 }

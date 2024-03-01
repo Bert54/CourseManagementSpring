@@ -3,7 +3,7 @@ package com.test.coursemanagementspring.inbounds.http.controllers.person;
 import com.test.coursemanagementspring.core.common.errors.ValidationException;
 import com.test.coursemanagementspring.core.services.person.adapters.PersonServiceAdapter;
 import com.test.coursemanagementspring.core.services.person.entities.Person;
-import com.test.coursemanagementspring.inbounds.dto.person.AddPersonDto;
+import com.test.coursemanagementspring.inbounds.common.dto.person.AddPersonDto;
 import com.test.coursemanagementspring.inbounds.http.common.errorhandler.object.ErrorObject;
 import com.test.coursemanagementspring.inbounds.http.common.aspects.checkpermission.CheckPermission;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;

@@ -17,4 +17,9 @@ public class MembershipService implements MembershipServiceAdapter {
     public Membership addMembership(Membership membership) {
         return this.membershipDao.save(membership);
     }
+
+    @Override
+    public Membership removeMembership(int personId, String className) {
+        return this.membershipDao.delete(personId, className);
+    }
 }

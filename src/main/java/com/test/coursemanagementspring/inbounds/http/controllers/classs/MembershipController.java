@@ -2,13 +2,11 @@ package com.test.coursemanagementspring.inbounds.http.controllers.classs;
 
 import com.test.coursemanagementspring.core.services.classs.adapters.MembershipServiceAdapter;
 import com.test.coursemanagementspring.core.services.classs.entities.Membership;
-import com.test.coursemanagementspring.inbounds.dto.classs.AddMembershipDto;
+import com.test.coursemanagementspring.inbounds.common.dto.classs.AddMembershipDto;
 import com.test.coursemanagementspring.inbounds.http.common.aspects.checkpermission.CheckPermission;
 import com.test.coursemanagementspring.inbounds.http.common.errorhandler.object.ErrorObject;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -88,5 +86,52 @@ public class MembershipController {
         }
 
         return this.membershipService.addMembership(membership.toCoreMembership(Integer.parseInt(personIdStr)));
+    }
+
+    @DeleteMapping(path = "/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CheckPermission(permission = CLASS_JOIN)
+    @Operation(
+            description = "Leave a class. The name of the class is provided in the request URI.",
+            summary = "Leave a class",
+            operationId = "leaveClass"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Class successfully left"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "The class or the membership was not found",
+                    content = @Content(
+                            schema = @Schema(
+                                    implementation = ErrorObject.class
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "No authorization header were provided or authorization header is empty",
+                    content = @Content(
+                            schema = @Schema(
+                                    implementation = ErrorObject.class
+                            )
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "The person does not have the required permission",
+                    content = @Content(
+                            schema = @Schema(
+                                    implementation = ErrorObject.class
+                            )
+                    )
+            )
+    })
+    public Membership leaveClass(
+            @RequestHeader(PERMISSION_HEADER) String personIdStr,
+            @PathVariable("name") String className) {
+        // No needs to validate the person ID since the "CheckPermission" aspect already did this for us
+        return this.membershipService.removeMembership(Integer.parseInt(personIdStr), className);
     }
 }

@@ -1,7 +1,5 @@
 package com.test.coursemanagementspring.outbounds.databases.sql.classs.entities;
 
-import com.test.coursemanagementspring.inbounds.dto.classs.AddMembershipDto;
-
 import java.io.Serializable;
 
 public class MembershipEntityPK implements Serializable {

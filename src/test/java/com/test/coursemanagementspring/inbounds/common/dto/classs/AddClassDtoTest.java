@@ -1,9 +1,7 @@
-package com.test.coursemanagementspring.inbounds.dto.classs;
+package com.test.coursemanagementspring.inbounds.common.dto.classs;
 
 import com.test.coursemanagementspring.core.common.errors.ValidationException;
-import com.test.coursemanagementspring.core.services.person.entities.Person;
-import com.test.coursemanagementspring.core.services.person.entities.Student;
-import com.test.coursemanagementspring.inbounds.dto.person.AddPersonDto;
+import com.test.coursemanagementspring.inbounds.common.dto.classs.AddClassDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

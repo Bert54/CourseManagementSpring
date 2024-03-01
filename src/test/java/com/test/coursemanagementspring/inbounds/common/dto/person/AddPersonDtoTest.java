@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.dto.person;
+package com.test.coursemanagementspring.inbounds.common.dto.person;
 
 import com.test.coursemanagementspring.core.common.errors.UnknownEntityException;
 import com.test.coursemanagementspring.core.common.errors.ValidationException;
@@ -6,6 +6,7 @@ import com.test.coursemanagementspring.core.services.person.entities.Administrat
 import com.test.coursemanagementspring.core.services.person.entities.Person;
 import com.test.coursemanagementspring.core.services.person.entities.Student;
 import com.test.coursemanagementspring.core.services.person.entities.Teacher;
+import com.test.coursemanagementspring.inbounds.common.dto.person.AddPersonDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

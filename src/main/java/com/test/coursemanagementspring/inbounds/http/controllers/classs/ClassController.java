@@ -2,7 +2,7 @@ package com.test.coursemanagementspring.inbounds.http.controllers.classs;
 
 import com.test.coursemanagementspring.core.services.classs.adapters.ClassServiceAdapter;
 import com.test.coursemanagementspring.core.services.classs.entities.Class;
-import com.test.coursemanagementspring.inbounds.dto.classs.AddClassDto;
+import com.test.coursemanagementspring.inbounds.common.dto.classs.AddClassDto;
 import com.test.coursemanagementspring.inbounds.http.common.errorhandler.object.ErrorObject;
 import com.test.coursemanagementspring.inbounds.http.common.aspects.checkpermission.CheckPermission;
 import com.test.coursemanagementspring.libs.logger.adapters.LoggerAdapter;

@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.dto.classs;
+package com.test.coursemanagementspring.inbounds.common.dto.classs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.test.coursemanagementspring.core.common.errors.ValidationException;

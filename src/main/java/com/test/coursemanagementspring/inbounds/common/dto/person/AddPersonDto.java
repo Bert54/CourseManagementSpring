@@ -1,4 +1,4 @@
-package com.test.coursemanagementspring.inbounds.dto.person;
+package com.test.coursemanagementspring.inbounds.common.dto.person;
 
 import com.test.coursemanagementspring.core.common.errors.UnknownEntityException;
 import com.test.coursemanagementspring.core.common.errors.ValidationException;
