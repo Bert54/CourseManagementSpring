@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.test.coursemanagementspring.core.services.classs.entities.Class;
 
 public class Course {
+    public static final int TITLE_MIN_LENGTH = 3;
+    public static final int TITLE_MAX_LENGTH = 200;
+    public static final int CONTENT_MIN_LENGTH = 1;
+
     int id;
     int teacherId;
     String className;
