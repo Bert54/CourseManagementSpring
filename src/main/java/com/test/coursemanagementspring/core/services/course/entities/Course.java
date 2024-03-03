@@ -1,5 +1,6 @@
 package com.test.coursemanagementspring.core.services.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.test.coursemanagementspring.core.services.classs.entities.Class;
 
@@ -72,6 +73,7 @@ public class Course {
         this.content = content;
     }
 
+    @JsonInclude(value = JsonInclude.Include.NON_EMPTY, content = JsonInclude.Include.NON_NULL)
     public Class getCls() {
         return cls;
     }

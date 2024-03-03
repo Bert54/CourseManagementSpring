@@ -17,11 +17,11 @@ public class MembershipEntity {
     private String className;
 
     @ManyToOne
-    @JoinColumn(name="person_id", referencedColumnName = "id")
+    @JoinColumn(name="person_id", referencedColumnName = "id", insertable=false, updatable=false)
     private PersonEntity personEntity;
 
     @ManyToOne
-    @JoinColumn(name="class_name", referencedColumnName = "name")
+    @JoinColumn(name="class_name", referencedColumnName = "name", insertable=false, updatable=false)
     private ClassEntity classEntity;
 
     public MembershipEntity(int personId, String className) {

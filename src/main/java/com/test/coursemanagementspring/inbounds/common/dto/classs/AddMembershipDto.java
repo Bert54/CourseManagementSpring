@@ -38,7 +38,7 @@ public class AddMembershipDto {
         // validate name
         // we can ignore NAME_MIN_NAME since it is equal to 1
         if (this.className.isEmpty()) {
-            violations.add("Class name is empty");
+            violations.add("Class name must not be empty");
         } else if (this.className.length() > NAME_MAX_LENGTH) {
             violations.add(String.format("Class name must be at most %d characters long", NAME_MAX_LENGTH));
         }

@@ -20,7 +20,7 @@ public class AddClassDto {
     @Schema(description = "Name of the class")
     private String name;
 
-    public AddClassDto(@JsonProperty("name")  String name) {
+    public AddClassDto(@JsonProperty("name") String name) {
         this.name = name;
     }
 
@@ -38,7 +38,7 @@ public class AddClassDto {
         // validate name
         // we can ignore NAME_MIN_NAME since it is equal to 1
         if (this.name.isEmpty()) {
-            violations.add("Name is empty");
+            violations.add("Name must not be empty");
         } else if (this.name.length() > NAME_MAX_LENGTH) {
             violations.add(String.format("Name must be at most %d characters long", NAME_MAX_LENGTH));
         }

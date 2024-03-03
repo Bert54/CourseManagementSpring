@@ -51,7 +51,7 @@ public class AddPersonDto {
 
         // validate name
         if (this.name.isEmpty()) {
-            violations.add("Name is empty");
+            violations.add("Name must not be empty");
         } else if (this.name.length() < NAME_MIN_LENGTH) {
             violations.add(String.format("Name must be at least %d characters long", NAME_MIN_LENGTH));
         } else if (this.name.length() > NAME_MAX_LENGTH) {

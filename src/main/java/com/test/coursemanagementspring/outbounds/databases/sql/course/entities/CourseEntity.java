@@ -99,6 +99,12 @@ public class CourseEntity {
     }
 
     public Course toCoreCourse() {
-        return new Course(this.id, this.teacherId, this.className, this.title, this.content, this.cls.toCoreClass(false));
+        //return new Course(this.id, this.teacherId, this.className, this.title, this.content, this.cls.toCoreClass(false));
+        Course course = new Course(this.id, this.teacherId, this.className, this.title, this.content, null);
+        if (this.cls != null) {
+            course.setCls(this.cls.toCoreClass(false));
+        }
+
+        return course;
     }
 }

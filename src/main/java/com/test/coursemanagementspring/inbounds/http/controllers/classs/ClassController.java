@@ -80,7 +80,7 @@ public class ClassController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "The person to add has an invalid name or already exists",
+                    description = "The class to add has an invalid name or already exists",
                     content = @Content(
                             schema = @Schema(
                                     implementation = ErrorObject.class
